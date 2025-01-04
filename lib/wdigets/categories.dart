@@ -3,7 +3,7 @@ import 'package:book/core/constants/text_styles.dart';
 import 'package:book/wdigets/custom_container.dart';
 import 'package:flutter/material.dart';
 
-CustomContainer Categories({required String txt}) {
+CustomContainer Categories({required String txt, imagePath}) {
   return CustomContainer(
       child: Column(
     children: [
@@ -13,7 +13,7 @@ CustomContainer Categories({required String txt}) {
         width: 56,
         height: 56,
         color: AppColors.light2,
-        child: Image.asset('assets/images/user2.png'),
+        child: CircleAvatar(backgroundImage: NetworkImage('$imagePath')),
       ),
       SizedBox(
         height: 5,

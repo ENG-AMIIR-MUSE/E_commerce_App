@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
   final Color fillColor;
   final BorderRadius borderRadius;
   final TextStyle? textStyle;
+  
   final TextStyle? hintStyle;
   final bool alignText;
   final Function(String)? onChanged;

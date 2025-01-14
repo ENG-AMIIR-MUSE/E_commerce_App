@@ -1,19 +1,22 @@
 import 'package:book/core/constants/app_colors.dart';
 import 'package:book/core/constants/text_styles.dart';
+import 'package:book/view/create_accout.dart';
 import 'package:book/view/sign_password.dart';
 import 'package:book/wdigets/custom_button.dart';
-
 import 'package:book/wdigets/custom_text_field.dart';
 import 'package:book/wdigets/row_child.dart';
 import 'package:book/wdigets/sign_option.dart';
 import 'package:book/wdigets/sign_optoins.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:book/controllers/auth_controller.dart';
 
 class SignUP extends StatelessWidget {
   SignUP({super.key});
 
   final TextEditingController txt = TextEditingController();
   final TextEditingController txt2 = TextEditingController();
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +42,28 @@ class SignUP extends StatelessWidget {
               hintText: "Enter Email Address",
             ),
             const SizedBox(height: 16),
+            CustomTextField(
+              borderRadius: BorderRadius.circular(4),
+              controller: txt2,
+              hintText: "Enter Password",
+              isPassword: true,
+            ),
+            const SizedBox(height: 16),
             CustomButton(
               text: "Continue",
               onPressed: () {
-                // Perform action on button press
-
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignPassword()));
+                authController.login(
+                    email: txt.text, password: txt2.text, context: context);
               },
             ),
             const SizedBox(height: 16),
-            rowChild(txt1: "Dont Have Account ? ", txt2: "Create One"),
+            InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CreateAccount()));
+                },
+                child:
+                    rowChild(txt1: "Dont Have Account ? ", txt2: "Create One")),
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(top: 71.0),
